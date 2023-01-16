@@ -34,7 +34,9 @@ function onSearch(event) {
           createCountryFullInformation(data);
         }
       })
-      .catch(error => Notify.failure(`${error}`));
+        .catch(error => Notify.failure(`${error}`)).finally(() => {
+            countryInput.reset();
+      });
   }
 }
 
