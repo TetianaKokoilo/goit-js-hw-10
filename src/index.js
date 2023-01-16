@@ -14,7 +14,6 @@ countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(event) {
   const entryCountry = event.target.value.trim();
 
-  //   countryInfo.hidden = true;
   countryInfo.innerHTML = '';
   countryList.innerHTML = '';
 
@@ -33,7 +32,6 @@ function onSearch(event) {
         if (data.length === 1) {
           countryList.innerHTML = '';
           createCountryFullInformation(data);
-          //   countryInfo.hidden = false;
         }
       })
       .catch(error => Notify.failure(`${error}`));
