@@ -64,9 +64,9 @@ function createCountryFullInformation(data) {
         const language = Object.values(languages);
         return `<h1 class="country-name">
      <img src="${svg}" class="country-flag" alt="${official}"> ${official}</h1>
-      <h2 class="country-capital">Capital: ${capital}</h2>
-      <h3 class="country-population">Population: ${population}</h3>
-      <h4 class="country-languages">Languages: ${language}</h4>`;
+      <h2 class="country-capital">Capital: <span class="country-style">${capital}</span></h2>
+      <h2 class="country-population">Population: <span class="country-style">${population}</span></h2>
+      <h2 class="country-languages">Languages: <span class="country-style">${language}</span></h2>`;
       }
     )
     .join('');
