@@ -14,7 +14,7 @@ countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(event) {
   const entryCountry = event.target.value.trim();
 
-  // countryInfo.hidden = true;
+  //   countryInfo.hidden = true;
   countryInfo.innerHTML = '';
   countryList.innerHTML = '';
 
@@ -28,48 +28,48 @@ function onSearch(event) {
           return;
         }
 
-        // createCountryListMarkup(data);
+        createCountrySomeInformation(data);
 
         if (data.length === 1) {
           countryList.innerHTML = '';
-          createCountryInformation(data);
-          // countryInfo.hidden = false;
+          createCountryFullInformation(data);
+          //   countryInfo.hidden = false;
         }
       })
       .catch(error => Notify.failure(`${error}`));
   }
 }
 
-// function createCountryListMarkup(data) {
-//   const markup = data
-//     .map(
-//       ({ name: { official }, flags: { svg } }) =>
-//         `<li class="country-list__item"><img src="${svg}" class="country-list__flag" alt="${official} flag">${official}</li>`
-//     )
-//     .join('');
+function createCountrySomeInformation(data) {
+  const markup = data
+    .map(
+      ({ name: { official }, flags: { svg } }) =>
+        `<li class="country-item"><img src="${svg}" class="country-flag" alt="${official}">${official}</li>`
+    )
+    .join('');
 
-//   countryList.insertAdjacentHTML('beforeend', markup);
-// }
+  countryList.insertAdjacentHTML('beforeend', markup);
+}
 
-function createCountryInformation(data) {
-  const newMarkup = data
+function createCountryFullInformation(data) {
+  const markup = data
     .map(
       ({
-          name: { official },
+        name: { official },
         population,
         capital,
         languages,
-          flags: { svg },
+        flags: { svg },
       }) => {
         const language = Object.values(languages);
-        return `<h1 class="country__name">
-     <img src="${svg}" class="country__image" alt="${official} flag"> ${official}</h1>
-      <h2 class="country__capital">Capital: ${capital}</h2>
-      <h3 class="country__population">Population: ${population}</h3>
-      <h4 class="country__languages">Languages: ${language}</h4>`;
+        return `<h1 class="country-name">
+     <img src="${svg}" class="country-flag" alt="${official}"> ${official}</h1>
+      <h2 class="country-capital">Capital: ${capital}</h2>
+      <h3 class="country-population">Population: ${population}</h3>
+      <h4 class="country-languages">Languages: ${language}</h4>`;
       }
     )
     .join('');
 
-  countryInfo.insertAdjacentHTML('beforeend', newMarkup);
+  countryInfo.insertAdjacentHTML('beforeend', markup);
 }
